@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a3d2e">
+<title>SIGC VIP — Round Records</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SIGC VIP">
+<style>
+  :root{
+    --green-deep:#0a3d2e;
+    --green:#13573f;
+    --green-light:#1d7a57;
+    --gold:#c9a449;
+    --gold-soft:#e3c878;
+    --cream:#f4efe3;
+    --paper:#fbf8f0;
+    --ink:#1a1a1a;
+    --line:#d8cfb8;
+    --shadow:rgba(10,61,46,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",-apple-system,sans-serif;
+    background:
+      radial-gradient(circle at 20% -10%, rgba(29,122,87,.25), transparent 50%),
+      radial-gradient(circle at 90% 10%, rgba(201,164,73,.15), transparent 45%),
+      var(--green-deep);
+    color:var(--ink);
+    min-height:100vh;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap{max-width:520px;margin:0 auto;padding:16px 14px 48px;}
+
+  /* ===== Header ===== */
+  header{text-align:center;padding:18px 0 22px;}
+  .crest{
+    width:54px;height:54px;margin:0 auto 10px;border-radius:50%;
+    background:linear-gradient(145deg,var(--gold-soft),var(--gold));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 20px rgba(201,164,73,.4);
+    font-size:26px;
+  }
+  .brand{
+    font-family:Georgia,"Times New Roman",serif;
+    color:var(--cream);letter-spacing:2px;
+  }
+  .brand .l1{font-size:13px;letter-spacing:4px;color:var(--gold-soft);text-transform:uppercase;}
+  .brand .l2{font-size:25px;font-weight:700;letter-spacing:1px;margin-top:2px;}
+  .brand .l3{font-size:11px;color:rgba(244,239,227,.6);letter-spacing:3px;margin-top:4px;text-transform:uppercase;}
+  .divider{width:60px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:2px;}
+
+  /* ===== Card / Panel ===== */
+  .panel{
+    background:var(--paper);
+    border-radius:18px;
+    box-shadow:0 12px 40px var(--shadow);
+    padding:22px 18px;
+    margin-bottom:16px;
+    border:1px solid rgba(201,164,73,.25);
+  }
+  .panel-title{
+    font-family:Georgia,serif;font-size:17px;color:var(--green-deep);
+    display:flex;align-items:center;gap:8px;margin-bottom:16px;
+    padding-bottom:10px;border-bottom:1px solid var(--line);
+  }
+  .panel-title .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;}
+
+  /* ===== Login ===== */
+  #loginView{min-height:60vh;display:flex;flex-direction:column;justify-content:center;}
+  .lock{font-size:40px;text-align:center;margin-bottom:8px;}
+  .login-sub{text-align:center;color:#6b6452;font-size:13px;margin-bottom:22px;line-height:1.6;}
+  label.fld{display:block;font-size:12px;color:#6b6452;margin:0 0 6px 2px;font-weight:600;letter-spacing:.5px;}
+  input,select{
+    width:100%;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);
+    border-radius:11px;background:#fff;color:var(--ink);font-family:inherit;
+    transition:border-color .2s;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--green-light);}
+  .btn{
+    width:100%;font-size:16px;font-weight:700;padding:14px;border:none;border-radius:11px;
+    cursor:pointer;font-family:inherit;letter-spacing:.5px;transition:transform .1s,box-shadow .2s;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn-primary{background:linear-gradient(135deg,var(--green-light),var(--green));color:var(--cream);box-shadow:0 6px 18px rgba(19,87,63,.35);}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--green-deep);box-shadow:0 6px 18px rgba(201,164,73,.4);}
+  .btn-ghost{background:transparent;color:var(--green);border:1.5px solid var(--green-light);}
+  .btn+.btn{margin-top:10px;}
+  .err{color:#b23b3b;font-size:13px;text-align:center;margin-top:12px;min-height:18px;}
+
+  /* ===== Score grid ===== */
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+  .field{margin-bottom:14px;}
+  .nine-head{
+    font-family:Georgia,serif;font-size:14px;font-weight:700;color:var(--green);
+    margin:18px 0 8px;display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .nine-head .tot{font-size:12px;color:#6b6452;font-weight:400;}
+  .holes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .hole{
+    background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 6px;text-align:center;
+  }
+  .hole .hno{font-size:10px;color:#9a9279;font-weight:700;letter-spacing:.5px;margin-bottom:4px;}
+  .hole-inputs{display:flex;gap:4px;}
+  .hole-inputs input{
+    padding:7px 2px;font-size:15px;text-align:center;border-radius:7px;
+    border:1px solid var(--line);
+  }
+  .hole-inputs .sc{flex:1;}
+  .hole-inputs .pt{flex:1;background:#faf6ea;}
+  .mini-legend{font-size:10px;color:#9a9279;display:flex;gap:10px;justify-content:center;margin-top:6px;}
+  .mini-legend b{color:var(--green);}
+
+  .summary-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 6px;
+    background:var(--green-deep);border-radius:12px;padding:12px 8px;
+  }
+  .sumcell{text-align:center;color:var(--cream);}
+  .sumcell .lab{font-size:9px;letter-spacing:1px;color:var(--gold-soft);text-transform:uppercase;}
+  .sumcell .val{font-size:22px;font-weight:700;font-family:Georgia,serif;margin-top:2px;}
+
+  /* ===== History ===== */
+  .hist-item{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .hist-item .hdate{font-weight:700;color:var(--green-deep);font-size:14px;}
+  .hist-item .hmeta{font-size:11px;color:#6b6452;margin-top:3px;}
+  .hist-item .hscore{font-family:Georgia,serif;font-size:20px;font-weight:700;color:var(--gold);text-align:right;white-space:nowrap;}
+  .hist-item .hscore small{display:block;font-size:10px;color:#9a9279;font-weight:400;}
+  .hist-del{background:none;border:none;color:#c08a8a;font-size:18px;cursor:pointer;padding:4px 6px;}
+  .empty{text-align:center;color:#9a9279;font-size:13px;padding:24px 0;}
+
+  .toolbar{display:flex;gap:10px;margin-top:4px;}
+  .toolbar .btn{flex:1;font-size:14px;padding:12px;}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .topbar .vipbadge{
+    background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:var(--green-deep);
+    font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:1px;
+  }
+  .topbar .logout{background:none;border:none;color:rgba(244,239,227,.7);font-size:12px;cursor:pointer;text-decoration:underline;}
+
+  .tabs{display:flex;gap:8px;margin-bottom:16px;}
+  .tab{
+    flex:1;text-align:center;padding:11px;border-radius:11px;font-size:14px;font-weight:700;
+    background:rgba(244,239,227,.12);color:rgba(244,239,227,.7);cursor:pointer;border:1px solid transparent;
+  }
+  .tab.active{background:var(--paper);color:var(--green-deep);border-color:var(--gold);}
+
+  .hidden{display:none!important;}
+  .foot{text-align:center;color:rgba(244,239,227,.45);font-size:10px;margin-top:24px;letter-spacing:1px;}
+  .toast{
+    position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(100px);
+    background:var(--green-deep);color:var(--cream);padding:12px 22px;border-radius:30px;
+    font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.3);opacity:0;transition:all .3s;z-index:100;
+    border:1px solid var(--gold);
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== LOGIN VIEW ===== -->
+  <div id="loginView">
+    <header>
+      <div class="crest">⛳</div>
+      <div class="brand">
+        <div class="l1">Members Only</div>
+        <div class="l2">SIGC VIP</div>
+        <div class="l3">Round Record Service</div>
+        <div class="divider"></div>
+      </div>
+    </header>
+    <div class="panel">
+      <div class="lock">🔐</div>
+      <p class="login-sub">VIP会員専用サービスです。<br>パスワードを入力してください。</p>
+      <label class="fld" for="pw">PASSWORD</label>
+      <input type="password" id="pw" inputmode="text" autocomplete="off" placeholder="••••••••">
+      <div class="err" id="loginErr"></div>
+      <button class="btn btn-gold" id="loginBtn">ログイン</button>
+    </div>
+    <div class="foot">SUBIC INTERNATIONAL GOLF CLUB · MARCH 2026</div>
+  </div>
+
+  <!-- ===== APP VIEW ===== -->
+  <div id="appView" class="hidden">
+    <div class="topbar">
+      <span class="vipbadge">★ VIP MEMBER</span>
+      <button class="logout" id="logoutBtn">ログアウト</button>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="record">📝 記録する</div>
+      <div class="tab" data-tab="history">📚 履歴</div>
+    </div>
+
+    <!-- ---- RECORD TAB ---- -->
+    <div id="recordTab">
+      <div class="panel">
+        <div class="panel-title"><span class="dot"></span>ラウンド情報</div>
+        <div class="field">
+          <label class="fld" for="rdate">日付</label>
+          <input type="date" id="rdate">
+        </div>
+        <div class="field">
+          <label class="fld" for="caddie">キャディ</label>
+          <select id="caddie"></select>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span class="dot"></span>スコア入力</div>
+
+        <div class="nine-head">OUT（1〜9番ホール）<span class="tot" id="outTot">スコア 0 / パット 0</span></div>
+        <div class="holes" id="outHoles"></div>
+
+        <div class="nine-head">IN（10〜18番ホール）<span class="tot" id="inTot">スコア 0 / パット 0</span></div>
+        <div class="holes" id="inHoles"></div>
+
+        <div class="mini-legend"><span>上＝<b>スコア</b></span><span>下＝<b>パット</b></span></div>
+
+        <div class="summary-bar">
+          <div class="sumcell"><div class="lab">OUT</div><div class="val" id="sumOut">0</div></div>
+          <div class="sumcell"><div class="lab">IN</div><div class="val" id="sumIn">0</div></div>
+          <div class="sumcell"><div class="lab">TOTAL</div><div class="val" id="sumTotal">0</div></div>
+          <div class="sumcell"><div class="lab">PUTTS</div><div class="val" id="sumPutt">0</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="field">
+          <label class="fld" for="memo">メモ（任意）</label>
+          <input type="text" id="memo" placeholder="天候・コンディションなど">
+        </div>
+        <button class="btn btn-primary" id="saveBtn">この端末に記録を保存</button>
+      </div>
+    </div>
+
+    <!-- ---- HISTORY TAB ---- -->
+    <div id="historyTab" class="hidden">
+      <div class="panel">
+        <div class="panel-title"><span class="dot"></span>ラウンド履歴</div>
+        <div id="histList"></div>
+        <div class="toolbar">
+          <button class="btn btn-gold" id="exportBtn">📤 CSVを書き出す</button>
+        </div>
+      </div>
+      <div class="foot">保存データはこの端末内のみに記録されます</div>
+    </div>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const VIP_PASSWORD = "sigcvip2026";
+const STORE_KEY = "sigc_vip_rounds";
+let CADDIES = [];
+
+/* ---------- caddie data ---------- */
+async function loadCaddies(){
+  try{
+    const r = await fetch("../attendants.json",{cache:"no-store"});
+    const data = await r.json();
+    CADDIES = data.filter(d=>d.name && d.name.trim()!=="");
+  }catch(e){ CADDIES = []; }
+  const sel = document.getElementById("caddie");
+  sel.innerHTML = '<option value="">— 選択してください —</option>';
+  CADDIES.forEach(c=>{
+    const o=document.createElement("option");
+    o.value=c.no; o.textContent=`No.${c.no}  ${c.name}`;
+    sel.appendChild(o);
+  });
+}
+
+/* ---------- build hole inputs ---------- */
+function buildHoles(containerId, start){
+  const c=document.getElementById(containerId);
+  c.innerHTML="";
+  for(let i=0;i<9;i++){
+    const h=start+i;
+    const div=document.createElement("div");
+    div.className="hole";
+    div.innerHTML=`<div class="hno">${h}</div>
+      <div class="hole-inputs">
+        <input class="sc" type="number" inputmode="numeric" min="1" max="20" data-type="score" data-hole="${h}">
+        <input class="pt" type="number" inputmode="numeric" min="0" max="10" data-type="putt" data-hole="${h}">
+      </div>`;
+    c.appendChild(div);
+  }
+}
+
+/* ---------- calc totals ---------- */
+function recalc(){
+  let outS=0,inS=0,outP=0,inP=0;
+  document.querySelectorAll('input[data-type="score"]').forEach(el=>{
+    const v=parseInt(el.value)||0; const h=parseInt(el.dataset.hole);
+    if(h<=9) outS+=v; else inS+=v;
+  });
+  document.querySelectorAll('input[data-type="putt"]').forEach(el=>{
+    const v=parseInt(el.value)||0; const h=parseInt(el.dataset.hole);
+    if(h<=9) outP+=v; else inP+=v;
+  });
+  document.getElementById("outTot").textContent=`スコア ${outS} / パット ${outP}`;
+  document.getElementById("inTot").textContent=`スコア ${inS} / パット ${inP}`;
+  document.getElementById("sumOut").textContent=outS;
+  document.getElementById("sumIn").textContent=inS;
+  document.getElementById("sumTotal").textContent=outS+inS;
+  document.getElementById("sumPutt").textContent=outP+inP;
+  return {outS,inS,outP,inP};
+}
+
+/* ---------- gather a record ---------- */
+function gatherRecord(){
+  const date=document.getElementById("rdate").value;
+  const caddieNo=document.getElementById("caddie").value;
+  if(!date){toast("日付を選択してください");return null;}
+  if(!caddieNo){toast("キャディを選択してください");return null;}
+  const cad=CADDIES.find(c=>String(c.no)===String(caddieNo));
+  const holes={};
+  document.querySelectorAll('input[data-type="score"]').forEach(el=>{
+    holes["s"+el.dataset.hole]=el.value?parseInt(el.value):"";
+  });
+  document.querySelectorAll('input[data-type="putt"]').forEach(el=>{
+    holes["p"+el.dataset.hole]=el.value?parseInt(el.value):"";
+  });
+  const t=recalc();
+  return {
+    id:Date.now(),
+    date, caddieNo:cad?cad.no:caddieNo, caddieName:cad?cad.name:"",
+    outScore:t.outS,inScore:t.inS,totalScore:t.outS+t.inS,
+    outPutt:t.outP,inPutt:t.inP,totalPutt:t.outP+t.inP,
+    holes, memo:document.getElementById("memo").value||""
+  };
+}
+
+/* ---------- storage ---------- */
+function getRounds(){
+  try{return JSON.parse(localStorage.getItem(STORE_KEY))||[];}catch(e){return [];}
+}
+function saveRounds(arr){localStorage.setItem(STORE_KEY,JSON.stringify(arr));}
+
+function saveRecord(){
+  const rec=gatherRecord();
+  if(!rec)return;
+  const arr=getRounds();
+  arr.unshift(rec);
+  saveRounds(arr);
+  toast("✓ 記録を保存しました");
+  // reset score inputs
+  document.querySelectorAll('input[data-type]').forEach(el=>el.value="");
+  document.getElementById("memo").value="";
+  recalc();
+  renderHistory();
+}
+
+/* ---------- history render ---------- */
+function renderHistory(){
+  const arr=getRounds();
+  const list=document.getElementById("histList");
+  if(arr.length===0){
+    list.innerHTML='<div class="empty">まだ記録がありません</div>';
+    return;
+  }
+  list.innerHTML="";
+  arr.forEach(r=>{
+    const div=document.createElement("div");
+    div.className="hist-item";
+    const dt=r.date.replace(/-/g,"/");
+    div.innerHTML=`<div>
+        <div class="hdate">${dt}</div>
+        <div class="hmeta">No.${r.caddieNo} ${r.caddieName}${r.memo?" · "+r.memo:""}</div>
+        <div class="hmeta">OUT ${r.outScore} / IN ${r.inScore} · パット ${r.totalPutt}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div class="hscore">${r.totalScore}<small>TOTAL</small></div>
+        <button class="hist-del" data-id="${r.id}">✕</button>
+      </div>`;
+    list.appendChild(div);
+  });
+  list.querySelectorAll(".hist-del").forEach(b=>{
+    b.onclick=()=>{
+      if(confirm("この記録を削除しますか？")){
+        saveRounds(getRounds().filter(x=>String(x.id)!==String(b.dataset.id)));
+        renderHistory();
+        toast("削除しました");
+      }
+    };
+  });
+}
+
+/* ---------- CSV export (iOS share) ---------- */
+function exportCSV(){
+  const arr=getRounds();
+  if(arr.length===0){toast("記録がありません");return;}
+  const head=["日付","キャディNo","キャディ名","OUTスコア","INスコア","合計スコア","OUTパット","INパット","合計パット"];
+  for(let h=1;h<=18;h++)head.push("H"+h+"スコア");
+  for(let h=1;h<=18;h++)head.push("H"+h+"パット");
+  head.push("メモ");
+  const rows=[head];
+  arr.slice().reverse().forEach(r=>{
+    const row=[r.date,r.caddieNo,r.caddieName,r.outScore,r.inScore,r.totalScore,r.outPutt,r.inPutt,r.totalPutt];
+    for(let h=1;h<=18;h++)row.push(r.holes["s"+h]??"");
+    for(let h=1;h<=18;h++)row.push(r.holes["p"+h]??"");
+    row.push(r.memo||"");
+    rows.push(row);
+  });
+  const csv=rows.map(r=>r.map(c=>{
+    const s=String(c);
+    return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;
+  }).join(",")).join("\r\n");
+  const bom="\uFEFF";
+  const blob=new Blob([bom+csv],{type:"text/csv"});
+  const fname="SIGC_VIP_records_"+new Date().toISOString().slice(0,10)+".csv";
+
+  // Try Web Share API (iOS share sheet -> ファイル/Numbers/Googleドライブ)
+  const file=new File([blob],fname,{type:"text/csv"});
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+    navigator.share({files:[file],title:"SIGC VIP ラウンド記録"})
+      .catch(()=>downloadFallback(blob,fname));
+  }else{
+    downloadFallback(blob,fname);
+  }
+}
+function downloadFallback(blob,fname){
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download=fname;document.body.appendChild(a);a.click();
+  document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);
+  toast("CSVを書き出しました");
+}
+
+/* ---------- toast ---------- */
+let toastTimer;
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+/* ---------- auth ---------- */
+function tryLogin(){
+  const v=document.getElementById("pw").value;
+  if(v===VIP_PASSWORD){
+    sessionStorage.setItem("sigc_vip_auth","1");
+    showApp();
+  }else{
+    document.getElementById("loginErr").textContent="パスワードが正しくありません";
+  }
+}
+function showApp(){
+  document.getElementById("loginView").classList.add("hidden");
+  document.getElementById("appView").classList.remove("hidden");
+  // default date = today
+  const t=new Date();
+  document.getElementById("rdate").value=
+    t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
+  renderHistory();
+}
+function logout(){
+  sessionStorage.removeItem("sigc_vip_auth");
+  document.getElementById("appView").classList.add("hidden");
+  document.getElementById("loginView").classList.remove("hidden");
+  document.getElementById("pw").value="";
+  document.getElementById("loginErr").textContent="";
+}
+
+/* ---------- tabs ---------- */
+function switchTab(name){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab===name));
+  document.getElementById("recordTab").classList.toggle("hidden",name!=="record");
+  document.getElementById("historyTab").classList.toggle("hidden",name!=="history");
+  if(name==="history")renderHistory();
+}
+
+/* ---------- init ---------- */
+document.addEventListener("DOMContentLoaded",async()=>{
+  buildHoles("outHoles",1);
+  buildHoles("inHoles",10);
+  await loadCaddies();
+  document.addEventListener("input",e=>{
+    if(e.target.dataset && e.target.dataset.type)recalc();
+  });
+  document.getElementById("loginBtn").onclick=tryLogin;
+  document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")tryLogin();});
+  document.getElementById("logoutBtn").onclick=logout;
+  document.getElementById("saveBtn").onclick=saveRecord;
+  document.getElementById("exportBtn").onclick=exportCSV;
+  document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>switchTab(t.dataset.tab));
+  if(sessionStorage.getItem("sigc_vip_auth")==="1")showApp();
+});
+
+/* ---------- service worker ---------- */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
+</script>
+</body>
+</html>
