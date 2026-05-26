@@ -150,7 +150,7 @@ input:focus,select:focus{outline:none;border-color:var(--green-light);}
 <div class="wrap">
 
 <!-- LOGIN -->
-<div id="loginView">
+<div id="loginView" class="hidden">
   <header>
     <div class="crest">⛳</div>
     <div class="brand">
@@ -172,7 +172,7 @@ input:focus,select:focus{outline:none;border-color:var(--green-light);}
 </div>
 
 <!-- APP -->
-<div id="appView" class="hidden">
+<div id="appView">
   <div class="topbar">
     <span class="vipbadge">★ VIP MEMBER</span>
     <button class="logout" id="logoutBtn">ログアウト</button>
@@ -294,7 +294,6 @@ input:focus,select:focus{outline:none;border-color:var(--green-light);}
 <div class="toast" id="toast"></div>
 
 <script>
-const VIP_PASSWORD = "sigcvip2026";
 const STORE_KEY = "sigc_vip_rounds";
 const FAV_KEY = "sigc_vip_favs";
 let CADDIES = [];
@@ -616,13 +615,6 @@ function toast(msg){
 }
 
 /* ===== Auth ===== */
-function tryLogin(){
-  if(document.getElementById("pw").value===VIP_PASSWORD){
-    sessionStorage.setItem("sigc_vip_auth","1");
-    showApp();
-  } else {
-    document.getElementById("loginErr").textContent="パスワードが正しくありません";
-  }
 }
 function showApp(){
   document.getElementById("loginView").classList.add("hidden");
@@ -653,8 +645,6 @@ document.addEventListener("DOMContentLoaded",async()=>{
   buildHoles("outHoles",1);
   buildHoles("inHoles",10);
   await loadCaddies();
-  document.getElementById("loginBtn").onclick=tryLogin;
-  document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")tryLogin();});
   document.getElementById("logoutBtn").onclick=logout;
   document.getElementById("saveBtn").onclick=saveRecord;
   document.getElementById("cancelEditBtn").onclick=()=>{resetForm();toast("編集をキャンセルしました");};
