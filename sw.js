@@ -1,8 +1,7 @@
 // SIGC Golf Attendants — Service Worker
 // バージョンを上げると古いキャッシュが自動削除されます
-const CACHE_NAME = 'sigc-v1.3.0'
+const CACHE_NAME = 'sigc-v1.5.0'
 
-// キャッシュするファイル一覧（インストール時に全取得）
 const PRECACHE = [
   './',
   './index.html',
@@ -12,10 +11,8 @@ const PRECACHE = [
   './icon-512.png',
 ]
 
-// 写真は動的キャッシュ（初回アクセス時に保存）
-const PHOTO_CACHE = 'sigc-photos-v1.3.0'
+const PHOTO_CACHE = 'sigc-photos-v1.5.0'
 
-// ── INSTALL: 基本ファイルをキャッシュ ──
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -24,7 +21,6 @@ self.addEventListener('install', event => {
   )
 })
 
-// ── ACTIVATE: 古いキャッシュを削除 ──
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -37,11 +33,9 @@ self.addEventListener('activate', event => {
   )
 })
 
-// ── FETCH: キャッシュ優先 → ネットワーク ──
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url)
 
-  // 写真ファイル: キャッシュ優先、なければネット取得してキャッシュに保存
   if (url.pathname.match(/\/photos(-mono|-soft|-pencil)?\//)) {
     event.respondWith(
       caches.open(PHOTO_CACHE).then(cache =>
@@ -50,14 +44,32 @@ self.addEventListener('fetch', event => {
           return fetch(event.request).then(res => {
             if (res.ok) cache.put(event.request, res.clone())
             return res
-          }).catch(() => cached) // オフライン時はキャッシュ返却
+          }).catch(() => cached)
         })
       )
     )
     return
   }
 
-  // その他: キャッシュ優先、なければネット
+  if (url.pathname.endsWith('/') ||
+      url.pathname.endsWith('index.html') ||
+      url.pathname.endsWith('attendants.json')) {
+    event.respondWith(
+      fetch(event.request).then(res => {
+        if (res.ok) {
+          const clone = res.clone()
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone))
+        }
+        return res
+      }).catch(() =>
+        caches.match(event.request).then(cached =>
+          cached || caches.match('./index.html')
+        )
+      )
+    )
+    return
+  }
+
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached
@@ -68,7 +80,6 @@ self.addEventListener('fetch', event => {
           return res
         })
       }).catch(() => {
-        // オフライン時: index.htmlを返す
         if (event.request.destination === 'document') {
           return caches.match('./index.html')
         }
