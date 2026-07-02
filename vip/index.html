@@ -262,7 +262,7 @@ input:focus,select:focus{outline:none;border-color:var(--green-light);}
     <div class="foot">保存データはこの端末内のみに記録されます</div>
     <div class="version-info">
       <div class="ver-line">SIGC VIP Round Records</div>
-      <div class="ver-line">Version 1.0.1 &nbsp;|&nbsp; 2026/05/26</div>
+      <div class="ver-line">Version 1.1.0 &nbsp;|&nbsp; 2026/07/02</div>
       <div class="ver-line">© 2026 ShoG. All rights reserved.</div>
     </div>
   </div>
@@ -292,7 +292,7 @@ async function loadCaddies(){
 
 function buildSelects(){
   const opts = '<option value="">— 選択してください —</option>' +
-    CADDIES.map(c=>`<option value="${c.no}">No.${c.no}　${c.name}</option>`).join("");
+    CADDIES.map(c=>`<option value="${c.no}">No.${c.no}　${c.name}${c.round?' 🚩':''}</option>`).join("");
   document.getElementById("caddie").innerHTML = opts;
   document.getElementById("favSelect").innerHTML = opts;
   renderFavs();

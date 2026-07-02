@@ -187,6 +187,11 @@
   }
   .card-status.leave  { background: var(--yellow); color: var(--yellow-fg); }
   .card-status.coming { background: var(--pink-pale); color: var(--pink); }
+  .card-round {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+    text-align: center; padding: 4px 6px;
+    background: #E8F5E9; color: #2E7D32;
+  }
 
   .card-admin { position: relative; }
   .status-toggle {
@@ -454,6 +459,7 @@
       <button class="filter-tab"        data-filter="active" onclick="setFilter('active',this)">アクティブ</button>
       <button class="filter-tab"        data-filter="leave"  onclick="setFilter('leave',this)">ON LEAVE</button>
       <button class="filter-tab"        data-filter="coming" onclick="setFilter('coming',this)">COMING SOON</button>
+      <button class="filter-tab"        data-filter="round"  onclick="setFilter('round',this)">🚩 ラウンド同伴可能</button>
     </div>
   </div>
 
@@ -556,8 +562,8 @@
 <script>
 // ════════ CONFIG ════════
 const ADMIN_PASSWORD = 'sigc2026'    // ← 必要に応じて変更
-const APP_VERSION    = '1.4.1'
-const APP_REG_DATE   = '2026年5月'
+const APP_VERSION    = '1.5.0'
+const APP_REG_DATE   = '2026年7月'
 
 // ════════ STATE ════════
 let ALL = [], overrides = {}, currentFilter = 'all', isAdmin = false, currentStyle = 'photo'
@@ -683,10 +689,12 @@ function hlText(text, q) {
 function updateFilterCounts() {
   const c = { all: ALL.length, active: 0, leave: 0, coming: 0 }
   ALL.forEach(a => { c[getStatus(a)]++ })
+  const roundN = ALL.filter(a => a.round === true).length
   document.querySelector('[data-filter="all"]').textContent    = `全員 (${c.all})`
   document.querySelector('[data-filter="active"]').textContent = `アクティブ (${c.active})`
   document.querySelector('[data-filter="leave"]').textContent  = `ON LEAVE (${c.leave})`
   document.querySelector('[data-filter="coming"]').textContent = `COMING SOON (${c.coming})`
+  document.querySelector('[data-filter="round"]').textContent  = `🚩 ラウンド同伴可能 (${roundN})`
 }
 
 function render() {
@@ -696,8 +704,11 @@ function render() {
 
   const filtered = ALL.filter(a => {
     const st = getStatus(a)
+    const matchFilter = currentFilter === 'all' ? true
+      : currentFilter === 'round' ? a.round === true
+      : st === currentFilter
     return (!uq || String(a.no).includes(uq) || a.name.toUpperCase().includes(uq))
-        && (currentFilter === 'all' || st === currentFilter)
+        && matchFilter
   })
 
   const activeN = filtered.filter(a => getStatus(a) === 'active').length
@@ -714,6 +725,7 @@ function render() {
     const statusBar = st === 'leave'
       ? `<div class="card-status leave">ON LEAVE</div>`
       : st === 'coming' ? `<div class="card-status coming">COMING SOON</div>` : ''
+    const roundBar = a.round ? `<div class="card-round">🚩 ラウンド同伴可能</div>` : ''
 
     const adminSec = isAdmin ? `
       <div class="card-admin">
@@ -728,7 +740,7 @@ function render() {
 
     return `<div class="card" style="animation-delay:${i*0.02}s">
       <img src="${getImgSrc(a, currentStyle)}" alt="${esc(a.name)}" loading="lazy">
-      ${statusBar}${adminSec}
+      ${roundBar}${statusBar}${adminSec}
     </div>`
   }).join('')
 }
