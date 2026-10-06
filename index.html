@@ -174,8 +174,9 @@
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  .card { position: relative; }
   .card img {
-    width: 100%; display: block;
+    width: 100%; display: block; cursor: pointer;
     border-bottom: 1px solid #fbe8ec;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -192,6 +193,87 @@
     text-align: center; padding: 4px 6px;
     background: #E8F5E9; color: #2E7D32;
   }
+
+  /* ── FAVORITES & MEMO ── */
+  .fav-star {
+    position: absolute; top: 6px; right: 6px; z-index: 2;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.92); border: 1.5px solid var(--pink-light);
+    font-size: 18px; line-height: 1; color: #c4a8af;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; padding: 0; font-family: inherit;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .fav-star.on { color: #e0a100; border-color: #f3d27a; background: #fffaf0; }
+  .memo-badge {
+    position: absolute; top: 6px; left: 6px; z-index: 2;
+    background: rgba(255,255,255,0.92); border: 1.5px solid var(--pink-light);
+    border-radius: 12px; padding: 3px 7px; font-size: 12px; line-height: 1;
+    pointer-events: none;
+  }
+  .my-tools {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    margin-top: 12px;
+  }
+  .my-tool {
+    padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+    border: 1.5px dashed var(--pink-light); background: var(--white); color: var(--pink-mid);
+    cursor: pointer; font-family: inherit;
+  }
+  .my-tool:hover { border-style: solid; border-color: var(--pink); }
+  .detail-photo {
+    width: 160px; display: block; margin: 0 auto 12px;
+    border-radius: 12px; border: 1.5px solid var(--pink-light);
+  }
+  .detail-tags { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .detail-tags span {
+    font-size: 11px; padding: 3px 10px; border-radius: 12px;
+    background: var(--pink-pale); color: var(--pink-mid);
+  }
+  .detail-tags span.round { background: #E8F5E9; color: #2E7D32; }
+  .fav-toggle {
+    width: 100%; padding: 10px 0; border-radius: 10px; font-size: 14px; font-weight: 600;
+    border: 1.5px solid #f3d27a; background: #fffaf0; color: #a87400;
+    cursor: pointer; font-family: inherit; margin-bottom: 14px;
+  }
+  .fav-toggle.on { background: #e0a100; border-color: #e0a100; color: var(--white); }
+  .memo-label { font-size: 12px; font-weight: 600; color: var(--dark); margin-bottom: 6px; display: block; }
+  .memo-area {
+    width: 100%; min-height: 110px; padding: 11px 14px; resize: vertical;
+    border: 2px solid var(--pink-light); border-radius: 10px;
+    font-size: 16px; font-family: inherit; line-height: 1.6; outline: none; color: var(--dark);
+  }
+  .memo-area:focus { border-color: var(--pink); }
+  .memo-meta { font-size: 11px; color: var(--gray); margin-top: 6px; min-height: 16px; }
+  .memo-del {
+    margin-top: 8px; width: 100%; background: none; color: #c0392b;
+    border: 1.5px solid #f5c6c0; border-radius: 10px; padding: 9px 0;
+    font-size: 13px; font-family: inherit; cursor: pointer;
+  }
+  .fav-list { display: flex; flex-direction: column; gap: 10px; }
+  .fav-row {
+    display: flex; gap: 12px; align-items: flex-start;
+    border: 1.5px solid #fbe8ec; border-radius: 12px; padding: 10px;
+    background: var(--white);
+  }
+  .fav-row img { width: 64px; border-radius: 8px; flex-shrink: 0; cursor: pointer; }
+  .fav-info { flex: 1; min-width: 0; }
+  .fav-name { font-weight: 600; font-size: 14px; color: var(--dark); }
+  .fav-name small { font-weight: 400; color: var(--gray); font-size: 11px; }
+  .fav-memo {
+    font-size: 12px; color: #555; margin-top: 4px; line-height: 1.55;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .fav-memo.empty { color: #b9a7ac; }
+  .fav-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .fav-actions button {
+    font-size: 11px; padding: 5px 10px; border-radius: 14px; cursor: pointer;
+    border: 1.5px solid var(--pink-light); background: var(--white); color: var(--pink-mid);
+    font-family: inherit;
+  }
+  .fav-section { font-size: 12px; font-weight: 600; color: var(--gray); margin: 14px 0 8px; }
+  .fav-note { font-size: 11px; color: var(--gray); line-height: 1.6; margin-top: 14px; text-align: center; }
+  .fav-empty { text-align: center; color: var(--gray); font-size: 13px; padding: 24px 0; line-height: 1.8; }
 
   .card-admin { position: relative; }
   .status-toggle {
@@ -460,6 +542,13 @@
       <button class="filter-tab"        data-filter="leave"  onclick="setFilter('leave',this)">ON LEAVE</button>
       <button class="filter-tab"        data-filter="coming" onclick="setFilter('coming',this)">COMING SOON</button>
       <button class="filter-tab"        data-filter="round"  onclick="setFilter('round',this)">🚩 ラウンド同伴可能</button>
+      <button class="filter-tab"        data-filter="fav"    onclick="setFilter('fav',this)">⭐ お気に入り</button>
+    </div>
+    <div class="my-tools">
+      <button class="my-tool" onclick="openFavList()">⭐ お気に入り一覧</button>
+      <button class="my-tool" onclick="exportMyData()">💾 バックアップ書き出し</button>
+      <button class="my-tool" onclick="document.getElementById('importFile').click()">📂 バックアップ読み込み</button>
+      <input type="file" id="importFile" accept=".json,application/json" style="display:none" onchange="importMyData(this)">
     </div>
   </div>
 
@@ -557,12 +646,40 @@
 </div>
 
 <!-- Toast -->
+<!-- Caddie Detail / Memo Modal -->
+<div class="modal-overlay" id="detailOverlay" onclick="closeDetail(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <img class="detail-photo" id="detailPhoto" alt="">
+    <h2 id="detailTitle">—</h2>
+    <p class="modal-sub" id="detailSub">No.000</p>
+    <div class="detail-tags" id="detailTags"></div>
+    <button class="fav-toggle" id="detailFavBtn" onclick="toggleFav(currentDetailNo)">☆ お気に入りに登録</button>
+    <label class="memo-label" for="memoInput">📝 メモ</label>
+    <textarea class="memo-area" id="memoInput" placeholder="例：丁寧で話しやすい／グリーンの読みが正確 など"></textarea>
+    <div class="memo-meta" id="memoMeta"></div>
+    <button class="login-btn" onclick="saveMemo()">メモを保存</button>
+    <button class="memo-del" id="memoDelBtn" onclick="deleteMemo()">メモを削除</button>
+    <button class="cancel-btn" onclick="closeDetail()">閉じる</button>
+  </div>
+</div>
+
+<!-- Favorites List Modal -->
+<div class="modal-overlay" id="favListOverlay" onclick="closeFavList(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h2>お気に入り一覧</h2>
+    <p class="modal-sub" id="favListSub">FAVORITES</p>
+    <div id="favListBody"></div>
+    <p class="fav-note">※お気に入りとメモは、この端末の中だけに保存されます。<br>Safariの「履歴とWebサイトデータを消去」で消えるため、<br>ときどき「💾 バックアップ書き出し」で保存してください。</p>
+    <button class="cancel-btn" onclick="closeFavList()">閉じる</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ════════ CONFIG ════════
 const ADMIN_PASSWORD = 'sigc2026'    // ← 必要に応じて変更
-const APP_VERSION    = '1.6.0'
+const APP_VERSION    = '1.7.0'
 const APP_REG_DATE   = '2026年10月'
 
 // ════════ STATE ════════
@@ -570,6 +687,199 @@ let ALL = [], overrides = {}, currentFilter = 'all', isAdmin = false, currentSty
 let photoOverrides = {}  // { no: dataURL } for replaced photos
 let currentEditNo = null
 let pendingNewPhoto = null
+
+// ════════ FAVORITES & MEMOS (この端末に保存) ════════
+const FAV_KEY  = 'sigc_favorites'
+const MEMO_KEY = 'sigc_memos'
+let favorites = []      // [番号, ...]
+let memos = {}          // { 番号: { text, name, updated } }
+let currentDetailNo = null
+
+function loadMyData() {
+  try { const f = JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); favorites = Array.isArray(f) ? f.map(Number) : [] } catch(e) { favorites = [] }
+  try { const m = JSON.parse(localStorage.getItem(MEMO_KEY) || '{}'); memos = (m && typeof m === 'object') ? m : {} } catch(e) { memos = {} }
+}
+function saveMyData() {
+  try {
+    localStorage.setItem(FAV_KEY, JSON.stringify(favorites))
+    localStorage.setItem(MEMO_KEY, JSON.stringify(memos))
+    return true
+  } catch(e) {
+    showToast('⚠️ 保存できませんでした（プライベートブラウズ中の可能性）')
+    return false
+  }
+}
+function isFav(no)   { return favorites.includes(Number(no)) }
+function hasMemo(no) { return !!(memos[no] && memos[no].text && memos[no].text.trim()) }
+function findCaddie(no) { return ALL.find(x => x.no === Number(no)) }
+function caddieName(no) { const a = findCaddie(no); return (a && a.name) ? a.name : '(名前未定)' }
+
+function toggleFav(no, e) {
+  if (e) e.stopPropagation()
+  no = Number(no)
+  if (isFav(no)) favorites = favorites.filter(n => n !== no)
+  else favorites.push(no)
+  favorites.sort((a, b) => a - b)
+  if (!saveMyData()) return
+  showToast(isFav(no) ? `⭐ No.${no} をお気に入りに登録しました` : `No.${no} をお気に入りから外しました`)
+  updateFilterCounts(); render()
+  if (currentDetailNo === no) refreshDetail()
+  if (document.getElementById('favListOverlay').classList.contains('open')) renderFavList()
+}
+
+// ── 詳細・メモ画面 ──
+function openDetail(no) {
+  currentDetailNo = Number(no)
+  refreshDetail()
+  document.getElementById('memoInput').value = hasMemo(no) ? memos[no].text : ''
+  document.getElementById('detailOverlay').classList.add('open')
+}
+function refreshDetail() {
+  const no = currentDetailNo, a = findCaddie(no)
+  if (!a) return
+  document.getElementById('detailPhoto').src = getImgSrc(a, 'photo')
+  document.getElementById('detailTitle').textContent = a.name || '(名前未定)'
+  document.getElementById('detailSub').textContent = 'No.' + no
+  const st = getStatus(a)
+  const tags = [st === 'active' ? 'アクティブ' : st === 'leave' ? 'ON LEAVE' : 'COMING SOON']
+  document.getElementById('detailTags').innerHTML =
+    tags.map(t => `<span>${t}</span>`).join('') + (a.round ? '<span class="round">🚩 ラウンド同伴可能</span>' : '')
+  const btn = document.getElementById('detailFavBtn')
+  btn.classList.toggle('on', isFav(no))
+  btn.textContent = isFav(no) ? '★ お気に入り登録済み（タップで解除）' : '☆ お気に入りに登録'
+  const m = memos[no]
+  let meta = ''
+  if (hasMemo(no)) {
+    meta = '最終更新: ' + new Date(m.updated).toLocaleString('ja-JP')
+    if (m.name && a.name && m.name !== a.name) meta += `（メモ作成時の名前: ${m.name}）`
+  }
+  document.getElementById('memoMeta').textContent = meta
+  document.getElementById('memoDelBtn').style.display = hasMemo(no) ? 'block' : 'none'
+}
+function closeDetail(e) {
+  if (e && e.target !== document.getElementById('detailOverlay')) return
+  document.getElementById('detailOverlay').classList.remove('open')
+  currentDetailNo = null
+}
+function saveMemo() {
+  const no = currentDetailNo
+  const text = document.getElementById('memoInput').value.trim()
+  if (!text) { showToast('メモが空です（削除する場合は「メモを削除」）'); return }
+  const a = findCaddie(no)
+  memos[no] = { text, name: a ? a.name : '', updated: new Date().toISOString() }
+  if (!saveMyData()) return
+  showToast(`📝 No.${no} のメモを保存しました`)
+  refreshDetail(); render()
+  if (document.getElementById('favListOverlay').classList.contains('open')) renderFavList()
+}
+function deleteMemo() {
+  const no = currentDetailNo
+  if (!hasMemo(no)) return
+  if (!confirm(`No.${no} ${caddieName(no)} のメモを削除しますか？`)) return
+  delete memos[no]
+  if (!saveMyData()) return
+  document.getElementById('memoInput').value = ''
+  showToast(`No.${no} のメモを削除しました`)
+  refreshDetail(); render()
+  if (document.getElementById('favListOverlay').classList.contains('open')) renderFavList()
+}
+
+// ── お気に入り一覧 ──
+function openFavList() {
+  renderFavList()
+  document.getElementById('favListOverlay').classList.add('open')
+}
+function closeFavList(e) {
+  if (e && e.target !== document.getElementById('favListOverlay')) return
+  document.getElementById('favListOverlay').classList.remove('open')
+}
+function favRowHTML(no) {
+  const a = findCaddie(no)
+  const img = a ? `<img src="${getImgSrc(a, 'photo')}" alt="" onclick="openDetail(${no})">` : ''
+  const st = a ? getStatus(a) : ''
+  const stLabel = st === 'leave' ? ' ・ON LEAVE' : st === 'coming' ? ' ・COMING SOON' : ''
+  const memo = hasMemo(no) ? `<div class="fav-memo">${esc(memos[no].text)}</div>` : `<div class="fav-memo empty">メモなし</div>`
+  const favBtn = isFav(no)
+    ? `<button onclick="toggleFav(${no})">★ お気に入り解除</button>`
+    : `<button onclick="toggleFav(${no})">☆ お気に入り登録</button>`
+  return `<div class="fav-row">${img}
+    <div class="fav-info">
+      <div class="fav-name">No.${no} ${esc(caddieName(no))}<small>${a && a.round ? ' 🚩' : ''}${stLabel}</small></div>
+      ${memo}
+      <div class="fav-actions"><button onclick="openDetail(${no})">📝 メモを書く・修正</button>${favBtn}</div>
+    </div></div>`
+}
+function renderFavList() {
+  const favNos = favorites.slice().sort((a, b) => a - b)
+  const memoOnly = Object.keys(memos).map(Number).filter(n => hasMemo(n) && !isFav(n)).sort((a, b) => a - b)
+  document.getElementById('favListSub').textContent = `お気に入り ${favNos.length} 名 ・ メモ ${Object.keys(memos).filter(hasMemo).length} 件`
+  let html = ''
+  if (!favNos.length && !memoOnly.length) {
+    html = `<div class="fav-empty">まだ登録がありません。<br>カードの ☆ をタップするとお気に入りに登録できます。<br>写真をタップするとメモを書けます。</div>`
+  } else {
+    html += favNos.length ? `<div class="fav-list">${favNos.map(favRowHTML).join('')}</div>` : `<div class="fav-empty">お気に入りはまだありません</div>`
+    if (memoOnly.length) html += `<div class="fav-section">📝 メモのみのキャディ</div><div class="fav-list">${memoOnly.map(favRowHTML).join('')}</div>`
+  }
+  document.getElementById('favListBody').innerHTML = html
+}
+
+// ── バックアップ ──
+async function exportMyData() {
+  const nMemo = Object.keys(memos).filter(hasMemo).length
+  if (!favorites.length && !nMemo) { showToast('書き出すお気に入り・メモがありません'); return }
+  const d = new Date()
+  const ymd = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0')
+  const data = { app: 'SIGC Golf Attendants', type: 'favorites-memos', version: 1,
+                 exportedAt: d.toISOString(), favorites, memos }
+  const fname = `SIGC_favorites_backup_${ymd}.json`
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+  try {
+    const file = new File([blob], fname, { type: 'application/json' })
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: 'SIGC お気に入りバックアップ' })
+      showToast('💾 バックアップを書き出しました')
+      return
+    }
+  } catch(e) { if (e && e.name === 'AbortError') return }
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url; link.download = fname
+  document.body.appendChild(link); link.click(); link.remove()
+  setTimeout(() => URL.revokeObjectURL(url), 2000)
+  showToast(`💾 バックアップを書き出しました（お気に入り${favorites.length}・メモ${nMemo}）`)
+}
+function importMyData(input) {
+  const file = input.files && input.files[0]
+  input.value = ''
+  if (!file) return
+  const reader = new FileReader()
+  reader.onload = () => {
+    let data
+    try { data = JSON.parse(reader.result) } catch(e) { showToast('⚠️ ファイルを読み込めませんでした'); return }
+    if (!data || data.type !== 'favorites-memos' || !Array.isArray(data.favorites) || typeof data.memos !== 'object') {
+      showToast('⚠️ SIGCのバックアップファイルではありません'); return
+    }
+    const newFav = data.favorites.map(Number).filter(n => n >= 200 && n <= 319)
+    const newMemo = {}
+    Object.keys(data.memos || {}).forEach(k => {
+      const m = data.memos[k]
+      if (m && typeof m.text === 'string' && m.text.trim()) newMemo[Number(k)] = { text: m.text, name: m.name || '', updated: m.updated || new Date().toISOString() }
+    })
+    const when = data.exportedAt ? new Date(data.exportedAt).toLocaleString('ja-JP') : '不明'
+    const msg = `バックアップ（${when}）を読み込みます。\n\n` +
+      `読み込む内容：お気に入り ${newFav.length} 名・メモ ${Object.keys(newMemo).length} 件\n` +
+      `現在の内容：お気に入り ${favorites.length} 名・メモ ${Object.keys(memos).filter(hasMemo).length} 件\n\n` +
+      `現在の内容は置き換わります。よろしいですか？`
+    if (!confirm(msg)) return
+    favorites = Array.from(new Set(newFav)).sort((a, b) => a - b)
+    memos = newMemo
+    if (!saveMyData()) return
+    updateFilterCounts(); render()
+    showToast('📂 バックアップを読み込みました')
+    if (document.getElementById('favListOverlay').classList.contains('open')) renderFavList()
+  }
+  reader.readAsText(file)
+}
 
 // ════════ PRIVACY ════════
 function updateAgreeBtn() {
@@ -640,6 +950,7 @@ async function initApp() {
 
   try { overrides = JSON.parse(localStorage.getItem('sigc_overrides') || '{}') } catch{}
   try { photoOverrides = JSON.parse(localStorage.getItem('sigc_photo_overrides') || '{}') } catch{}
+  loadMyData()
   // Load saved display style
   currentStyle = localStorage.getItem('sigc_style') || 'photo'
   updateStyleButtons()
@@ -695,6 +1006,7 @@ function updateFilterCounts() {
   document.querySelector('[data-filter="leave"]').textContent  = `ON LEAVE (${c.leave})`
   document.querySelector('[data-filter="coming"]').textContent = `COMING SOON (${c.coming})`
   document.querySelector('[data-filter="round"]').textContent  = `🚩 ラウンド同伴可能 (${roundN})`
+  document.querySelector('[data-filter="fav"]').textContent    = `⭐ お気に入り (${favorites.length})`
 }
 
 function render() {
@@ -706,6 +1018,7 @@ function render() {
     const st = getStatus(a)
     const matchFilter = currentFilter === 'all' ? true
       : currentFilter === 'round' ? a.round === true
+      : currentFilter === 'fav' ? isFav(a.no)
       : st === currentFilter
     return (!uq || String(a.no).includes(uq) || a.name.toUpperCase().includes(uq))
         && matchFilter
@@ -716,7 +1029,9 @@ function render() {
     `<b>${filtered.length}</b> 件表示中 &nbsp;|&nbsp; アクティブ <b>${activeN}</b> 名`
 
   if (!filtered.length) {
-    grid.innerHTML = `<div class="no-results"><div class="icon">🌸</div><p>「${esc(q)}」に一致する結果はありませんでした。</p></div>`
+    grid.innerHTML = currentFilter === 'fav' && !q
+      ? `<div class="no-results"><div class="icon">⭐</div><p>お気に入りはまだありません。<br>カードの ☆ をタップすると登録できます。</p></div>`
+      : `<div class="no-results"><div class="icon">🌸</div><p>「${esc(q)}」に一致する結果はありませんでした。</p></div>`
     return
   }
 
@@ -738,8 +1053,11 @@ function render() {
         <button class="photo-edit-btn" onclick="openPhotoEdit(${a.no}, '${esc(a.name)}')">📷 写真を変更</button>
       </div>` : ''
 
+    const fav = isFav(a.no)
     return `<div class="card" style="animation-delay:${i*0.02}s">
-      <img src="${getImgSrc(a, currentStyle)}" alt="${esc(a.name)}" loading="lazy">
+      <button class="fav-star ${fav ? 'on' : ''}" onclick="toggleFav(${a.no}, event)" aria-label="お気に入り">${fav ? '★' : '☆'}</button>
+      ${hasMemo(a.no) ? '<span class="memo-badge">📝</span>' : ''}
+      <img src="${getImgSrc(a, currentStyle)}" alt="${esc(a.name)}" loading="lazy" onclick="openDetail(${a.no})">
       ${roundBar}${statusBar}${adminSec}
     </div>`
   }).join('')
