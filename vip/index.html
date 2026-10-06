@@ -262,7 +262,7 @@ input:focus,select:focus{outline:none;border-color:var(--green-light);}
     <div class="foot">保存データはこの端末内のみに記録されます</div>
     <div class="version-info">
       <div class="ver-line">SIGC VIP Round Records</div>
-      <div class="ver-line">Version 1.1.0 &nbsp;|&nbsp; 2026/07/02</div>
+      <div class="ver-line">Version 1.2.0 &nbsp;|&nbsp; 2026/10/06</div>
       <div class="ver-line">© 2026 ShoG. All rights reserved.</div>
     </div>
   </div>
@@ -281,7 +281,7 @@ let sortOrder = "desc"; // desc=新しい順, asc=古い順
 /* ===== Caddie data ===== */
 async function loadCaddies(){
   try{
-    const r = await fetch("../attendants.json",{cache:"force-cache"});
+    const r = await fetch("../attendants.json?v="+Date.now(),{cache:"no-store"});
     const data = await r.json();
     // No.238 DARIELLE に修正
     data.forEach(d=>{ if(d.no===238) d.name="DARIELLE"; });
