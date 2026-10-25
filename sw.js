@@ -1,6 +1,6 @@
 // SIGC Golf Attendants — Service Worker
 // バージョンを上げると古いキャッシュが自動削除されます
-const CACHE_NAME = 'sigc-v1.7.0'
+const CACHE_NAME = 'sigc-v1.7.1'
 
 const PRECACHE = [
   './',
@@ -11,7 +11,7 @@ const PRECACHE = [
   './icon-512.png',
 ]
 
-const PHOTO_CACHE = 'sigc-photos-v1.6.0'
+const PHOTO_CACHE = 'sigc-photos-v1.7.1'
 
 self.addEventListener('install', event => {
   event.waitUntil(
