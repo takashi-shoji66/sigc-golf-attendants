@@ -294,6 +294,9 @@
   .hist-when.now { background: var(--pink); color: var(--white); }
   .hist-tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; margin-left: 4px; background: #E8F5E9; color: #2E7D32; }
   .hist-tag.leave { background: var(--yellow); color: var(--yellow-fg); }
+  .hist-tag.coming { background: var(--pink-pale); color: var(--pink); }
+  .hist-when.ref { background: #fff3cd; color: #8a6914; }
+  .hist-note { display: block; font-size: 11px; color: #a05060; margin-top: 2px; }
   .hist-empty { text-align: center; color: var(--gray); font-size: 13px; padding: 20px 0; line-height: 1.8; }
   .zoom-overlay { display: none; position: fixed; inset: 0; z-index: 400; background: rgba(42,26,31,0.75);
     align-items: center; justify-content: center; padding: 20px; }
@@ -720,7 +723,7 @@
 <script>
 // ════════ CONFIG ════════
 const ADMIN_PASSWORD = 'sigc2026'    // ← 必要に応じて変更
-const APP_VERSION    = '1.8.0'
+const APP_VERSION    = '1.8.1'
 const CURRENT_LIST   = { id: '2026-10-22', label: '2026年10月22日' }   // ← リスト更新時に変更
 const APP_REG_DATE   = '2026年10月'
 
@@ -897,6 +900,7 @@ function histLabel(id) {
   if (id === CURRENT_LIST.id) return CURRENT_LIST.label
   const l = HISTORY.lists.find(x => x.id === id); return l ? l.label : id
 }
+function histIsRef(id) { const l = HISTORY.lists.find(x => x.id === id); return !!(l && l.reference) }
 // 全リストの登場を1つの配列に（現在のリストは attendants.json から）
 function allAppearances() {
   const cur = ALL.filter(a => a.name).map(a => ({
@@ -904,14 +908,21 @@ function allAppearances() {
     photo: getImgSrc(a, 'photo'), now: true }))
   return HISTORY.entries.map(e => ({ ...e, now: false })).concat(cur)
 }
-function histRowHTML(e, extra) {
-  const tag = e.status === 'leave' ? '<span class="hist-tag leave">ON LEAVE</span>' : ''
+function histRowHTML(e, extra, personView) {
+  const tag = e.status === 'leave' ? '<span class="hist-tag leave">ON LEAVE</span>'
+            : e.status === 'coming' ? '<span class="hist-tag coming">COMING SOON</span>' : ''
   const flag = e.round ? ' 🚩' : ''
+  const ref = !e.now && histIsRef(e.list)
+  const when = e.now ? '現在' : histLabel(e.list) + '版' + (ref ? '（参考）' : '')
+  // 写真の名札と名前が違う場合：人物一覧では写真の名前を見出しに
+  const shown = personView && e.photoName ? e.photoName : e.name
+  const note = personView && e.photoName ? `リスト上の名前: ${esc(e.name)}` : (e.note ? esc(e.note) : '')
   return `<div class="hist-row ${e.now ? 'now' : ''}">
     <img src="${e.photo}" alt="" loading="lazy" onclick="zoomPhoto('${e.photo}')">
     <div class="hist-info">
-      <span class="hist-when ${e.now ? 'now' : ''}">${e.now ? '現在' : histLabel(e.list) + '版'}</span><br>
-      <span class="hist-name">No.${e.no} ${esc(e.name)}</span>${flag}${tag}
+      <span class="hist-when ${e.now ? 'now' : ref ? 'ref' : ''}">${when}</span><br>
+      <span class="hist-name">No.${e.no} ${esc(shown)}</span>${flag}${tag}
+      ${note ? `<span class="hist-note">${note}</span>` : ''}
       ${extra || ''}
     </div></div>`
 }
@@ -922,11 +933,13 @@ function renderHistory() {
   const apps = allAppearances()
   const order = id => (id === CURRENT_LIST.id ? '9999' : id)
   if (q) {
-    const hits = apps.filter(e => String(e.no).includes(q) || e.name.toUpperCase().includes(q))
+    const hits = apps.filter(e => String(e.no).includes(q) || e.name.toUpperCase().includes(q)
+                               || (e.photoName && e.photoName.toUpperCase().includes(q)))
       .sort((a, b) => {
         if (/^\d+$/.test(q)) return (String(a.no) === q ? 0 : 1) - (String(b.no) === q ? 0 : 1)
           || a.no - b.no || order(b.list).localeCompare(order(a.list))
-        const rank = e => { const n = e.name.toUpperCase(); return n === q ? 0 : n.startsWith(q) ? 1 : 2 }
+        const rank = e => { const n = e.name.toUpperCase(), pn = (e.photoName || '').toUpperCase()
+          return (n === q || pn === q) ? 0 : (n.startsWith(q) || pn.startsWith(q)) ? 1 : 2 }
         return rank(a) - rank(b) || a.name.localeCompare(b.name) || order(b.list).localeCompare(order(a.list))
       })
     body.innerHTML = hits.length
@@ -938,7 +951,8 @@ function renderHistory() {
   const curNames = new Set(ALL.filter(a => a.name).map(a => a.name.toUpperCase()))
   const gone = {}
   HISTORY.entries.forEach(e => {
-    const k = e.name.toUpperCase()
+    if (e.note && !e.photoName) return            // 当時は写真未登録（人物が分からない）
+    const k = (e.photoName || e.name).toUpperCase()   // 写真に写っている人で判断
     if (curNames.has(k)) return
     ;(gone[k] = gone[k] || []).push(e)
   })
@@ -948,8 +962,8 @@ function renderHistory() {
     <div class="hist-sec">👋 今はいないキャディ（${people.length}名）</div>` +
     (people.length ? `<div class="hist-list">${people.map(list => {
       const latest = list[0]
-      const seen = list.map(e => `${histLabel(e.list)}版 No.${e.no}`).join('<br>')
-      return histRowHTML(latest, `<br>掲載：<br>${seen}`)
+      const seen = list.map(e => `${histLabel(e.list)}版${histIsRef(e.list) ? '（参考）' : ''} No.${e.no}`).join('<br>')
+      return histRowHTML(latest, `<div style="margin-top:2px">掲載：<br>${seen}</div>`, true)
     }).join('')}</div>` : '<div class="hist-empty">いません</div>') +
     `<p class="fav-note">※現在のリストに同じ名前がいない人を表示しています。<br>同じ名前で別の人が入った場合は、検索で写真を見比べてください。</p>`
 }
