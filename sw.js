@@ -1,6 +1,6 @@
 // SIGC Golf Attendants — Service Worker
 // バージョンを上げると古いキャッシュが自動削除されます
-const CACHE_NAME = 'sigc-v1.7.1'
+const CACHE_NAME = 'sigc-v1.8.0'
 
 const PRECACHE = [
   './',
@@ -53,7 +53,8 @@ self.addEventListener('fetch', event => {
 
   if (url.pathname.endsWith('/') ||
       url.pathname.endsWith('index.html') ||
-      url.pathname.endsWith('attendants.json')) {
+      url.pathname.endsWith('attendants.json') ||
+      url.pathname.endsWith('history.json')) {
     event.respondWith(
       fetch(event.request).then(res => {
         if (res.ok) {

@@ -275,6 +275,31 @@
   .fav-note { font-size: 11px; color: var(--gray); line-height: 1.6; margin-top: 14px; text-align: center; }
   .fav-empty { text-align: center; color: var(--gray); font-size: 13px; padding: 24px 0; line-height: 1.8; }
 
+  /* ── PAST LISTS (history) ── */
+  .hist-search { position: relative; margin-bottom: 12px; }
+  .hist-search input { padding-right: 40px !important; }
+  .hist-search .x {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; font-size: 18px; color: var(--gray); cursor: pointer; padding: 4px;
+  }
+  .hist-hint { font-size: 11px; color: var(--gray); text-align: center; margin-bottom: 12px; line-height: 1.6; }
+  .hist-sec { font-size: 12px; font-weight: 600; color: var(--gray); margin: 4px 0 8px; }
+  .hist-list { display: flex; flex-direction: column; gap: 8px; }
+  .hist-row { display: flex; gap: 12px; align-items: flex-start; border: 1.5px solid #fbe8ec; border-radius: 12px; padding: 8px; background: var(--white); }
+  .hist-row.now { border-color: var(--pink-light); background: #fffafb; }
+  .hist-row img { width: 72px; border-radius: 8px; flex-shrink: 0; cursor: zoom-in; }
+  .hist-info { flex: 1; min-width: 0; font-size: 12px; color: var(--gray); line-height: 1.6; }
+  .hist-name { font-size: 14px; font-weight: 600; color: var(--dark); }
+  .hist-when { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px; background: #f1ecee; color: #6b5b61; margin-bottom: 2px; }
+  .hist-when.now { background: var(--pink); color: var(--white); }
+  .hist-tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; margin-left: 4px; background: #E8F5E9; color: #2E7D32; }
+  .hist-tag.leave { background: var(--yellow); color: var(--yellow-fg); }
+  .hist-empty { text-align: center; color: var(--gray); font-size: 13px; padding: 20px 0; line-height: 1.8; }
+  .zoom-overlay { display: none; position: fixed; inset: 0; z-index: 400; background: rgba(42,26,31,0.75);
+    align-items: center; justify-content: center; padding: 20px; }
+  .zoom-overlay.open { display: flex; }
+  .zoom-overlay img { max-width: min(420px, 100%); max-height: 88vh; border-radius: 14px; background: var(--white); }
+
   .card-admin { position: relative; }
   .status-toggle {
     width: 100%; background: #fdf0f2; border: none;
@@ -546,6 +571,7 @@
     </div>
     <div class="my-tools">
       <button class="my-tool" onclick="openFavList()">⭐ お気に入り一覧</button>
+      <button class="my-tool" onclick="openHistory()">🕘 過去のキャディ検索</button>
       <button class="my-tool" onclick="exportMyData()">💾 バックアップ書き出し</button>
       <button class="my-tool" onclick="document.getElementById('importFile').click()">📂 バックアップ読み込み</button>
       <input type="file" id="importFile" accept=".json,application/json" style="display:none" onchange="importMyData(this)">
@@ -663,6 +689,21 @@
   </div>
 </div>
 
+<!-- Past Lists Modal -->
+<div class="modal-overlay" id="histOverlay" onclick="closeHistory(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h2>過去のキャディ</h2>
+    <p class="modal-sub" id="histSub">PAST LISTS</p>
+    <div class="hist-search">
+      <input type="text" id="histInput" placeholder="名前または番号で検索（例：SANDY、260）" autocomplete="off" oninput="renderHistory()">
+      <button class="x" onclick="document.getElementById('histInput').value='';renderHistory()" aria-label="クリア">×</button>
+    </div>
+    <div id="histBody"></div>
+    <button class="cancel-btn" onclick="closeHistory()">閉じる</button>
+  </div>
+</div>
+<div class="zoom-overlay" id="zoomOverlay" onclick="this.classList.remove('open')"><img id="zoomImg" alt=""></div>
+
 <!-- Favorites List Modal -->
 <div class="modal-overlay" id="favListOverlay" onclick="closeFavList(event)">
   <div class="modal" onclick="event.stopPropagation()">
@@ -679,7 +720,8 @@
 <script>
 // ════════ CONFIG ════════
 const ADMIN_PASSWORD = 'sigc2026'    // ← 必要に応じて変更
-const APP_VERSION    = '1.7.1'
+const APP_VERSION    = '1.8.0'
+const CURRENT_LIST   = { id: '2026-10-22', label: '2026年10月22日' }   // ← リスト更新時に変更
 const APP_REG_DATE   = '2026年10月'
 
 // ════════ STATE ════════
@@ -821,6 +863,95 @@ function renderFavList() {
     if (memoOnly.length) html += `<div class="fav-section">📝 メモのみのキャディ</div><div class="fav-list">${memoOnly.map(favRowHTML).join('')}</div>`
   }
   document.getElementById('favListBody').innerHTML = html
+}
+
+// ════════ 過去のキャディ（history.json） ════════
+// 1件 = 「リストの日付 + 番号」。番号や名前が重複しても別々に表示し、写真で見分けられるようにする。
+let HISTORY = null
+async function openHistory() {
+  document.getElementById('histOverlay').classList.add('open')
+  if (!HISTORY) {
+    document.getElementById('histBody').innerHTML = '<div class="hist-empty">読み込み中…</div>'
+    try {
+      const r = await fetch('./history.json')
+      if (!r.ok) throw new Error('HTTP ' + r.status)
+      HISTORY = await r.json()
+    } catch(e) {
+      document.getElementById('histBody').innerHTML = '<div class="hist-empty">過去のリストを読み込めませんでした。<br>通信できる場所で再度お試しください。</div>'
+      return
+    }
+  }
+  const labels = HISTORY.lists.map(l => l.label).concat(CURRENT_LIST.label + '（現在）')
+  document.getElementById('histSub').textContent = labels.join(' ・ ')
+  renderHistory()
+}
+function closeHistory(e) {
+  if (e && e.target !== document.getElementById('histOverlay')) return
+  document.getElementById('histOverlay').classList.remove('open')
+}
+function zoomPhoto(src) {
+  document.getElementById('zoomImg').src = src
+  document.getElementById('zoomOverlay').classList.add('open')
+}
+function histLabel(id) {
+  if (id === CURRENT_LIST.id) return CURRENT_LIST.label
+  const l = HISTORY.lists.find(x => x.id === id); return l ? l.label : id
+}
+// 全リストの登場を1つの配列に（現在のリストは attendants.json から）
+function allAppearances() {
+  const cur = ALL.filter(a => a.name).map(a => ({
+    list: CURRENT_LIST.id, no: a.no, name: a.name, status: getStatus(a), round: !!a.round,
+    photo: getImgSrc(a, 'photo'), now: true }))
+  return HISTORY.entries.map(e => ({ ...e, now: false })).concat(cur)
+}
+function histRowHTML(e, extra) {
+  const tag = e.status === 'leave' ? '<span class="hist-tag leave">ON LEAVE</span>' : ''
+  const flag = e.round ? ' 🚩' : ''
+  return `<div class="hist-row ${e.now ? 'now' : ''}">
+    <img src="${e.photo}" alt="" loading="lazy" onclick="zoomPhoto('${e.photo}')">
+    <div class="hist-info">
+      <span class="hist-when ${e.now ? 'now' : ''}">${e.now ? '現在' : histLabel(e.list) + '版'}</span><br>
+      <span class="hist-name">No.${e.no} ${esc(e.name)}</span>${flag}${tag}
+      ${extra || ''}
+    </div></div>`
+}
+function renderHistory() {
+  if (!HISTORY) return
+  const q = document.getElementById('histInput').value.trim().toUpperCase()
+  const body = document.getElementById('histBody')
+  const apps = allAppearances()
+  const order = id => (id === CURRENT_LIST.id ? '9999' : id)
+  if (q) {
+    const hits = apps.filter(e => String(e.no).includes(q) || e.name.toUpperCase().includes(q))
+      .sort((a, b) => {
+        if (/^\d+$/.test(q)) return (String(a.no) === q ? 0 : 1) - (String(b.no) === q ? 0 : 1)
+          || a.no - b.no || order(b.list).localeCompare(order(a.list))
+        const rank = e => { const n = e.name.toUpperCase(); return n === q ? 0 : n.startsWith(q) ? 1 : 2 }
+        return rank(a) - rank(b) || a.name.localeCompare(b.name) || order(b.list).localeCompare(order(a.list))
+      })
+    body.innerHTML = hits.length
+      ? `<div class="hist-hint">${hits.length} 件 ・ 同じ番号・名前でも、リストが違えば別々に表示します。<br>写真をタップすると拡大します。</div><div class="hist-list">${hits.map(e => histRowHTML(e)).join('')}</div>`
+      : `<div class="hist-empty">「${esc(q)}」は、どのリストにも見つかりませんでした。</div>`
+    return
+  }
+  // 検索語なし：今はいないキャディ（現在のリストに同じ名前がいない人）
+  const curNames = new Set(ALL.filter(a => a.name).map(a => a.name.toUpperCase()))
+  const gone = {}
+  HISTORY.entries.forEach(e => {
+    const k = e.name.toUpperCase()
+    if (curNames.has(k)) return
+    ;(gone[k] = gone[k] || []).push(e)
+  })
+  const people = Object.values(gone).map(list => list.sort((a, b) => b.list.localeCompare(a.list)))
+    .sort((a, b) => b[0].list.localeCompare(a[0].list) || a[0].no - b[0].no)
+  body.innerHTML = `<div class="hist-hint">名前・番号で検索すると、すべてのリスト（現在を含む）から探します。</div>
+    <div class="hist-sec">👋 今はいないキャディ（${people.length}名）</div>` +
+    (people.length ? `<div class="hist-list">${people.map(list => {
+      const latest = list[0]
+      const seen = list.map(e => `${histLabel(e.list)}版 No.${e.no}`).join('<br>')
+      return histRowHTML(latest, `<br>掲載：<br>${seen}`)
+    }).join('')}</div>` : '<div class="hist-empty">いません</div>') +
+    `<p class="fav-note">※現在のリストに同じ名前がいない人を表示しています。<br>同じ名前で別の人が入った場合は、検索で写真を見比べてください。</p>`
 }
 
 // ── バックアップ ──

@@ -1,0 +1,1551 @@
+{
+"note": "過去のキャディリスト（PDFから作成）。現在のリストは attendants.json",
+"lists": [
+{
+"id": "2026-06-20",
+"label": "2026年6月20日"
+},
+{
+"id": "2026-08-27",
+"label": "2026年8月27日"
+}
+],
+"entries": [
+{
+"list": "2026-06-20",
+"no": 200,
+"name": "SEY",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/200.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 201,
+"name": "PRINCESS",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/201.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 202,
+"name": "ALTHEA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/202.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 203,
+"name": "AZY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/203.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 204,
+"name": "HAZELLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/204.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 205,
+"name": "JUDY",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/205.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 206,
+"name": "DAISY",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/206.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 207,
+"name": "EUNICE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/207.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 208,
+"name": "ACYL",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/208.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 209,
+"name": "KRIS",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/209.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 210,
+"name": "CHRISTINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/210.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 211,
+"name": "ABBY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/211.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 212,
+"name": "MAUREEN",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/212.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 214,
+"name": "GK",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/214.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 215,
+"name": "INAH",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/215.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 216,
+"name": "JAIMEE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/216.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 217,
+"name": "NICOLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/217.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 218,
+"name": "TRIXIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/218.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 219,
+"name": "JEEVEE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/219.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 220,
+"name": "BEVERLY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/220.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 221,
+"name": "ANGELINE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/221.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 222,
+"name": "ELLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/222.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 223,
+"name": "ADRIANNE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/223.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 224,
+"name": "MARIE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/224.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 225,
+"name": "CRIZELLE",
+"status": "leave",
+"round": false,
+"photo": "archive/2026-08-27/225.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 226,
+"name": "DIANE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/226.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 228,
+"name": "JOY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/228.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 229,
+"name": "JEZZ",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/229.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 230,
+"name": "SHARMAINE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/230.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 231,
+"name": "KYLA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/231.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 232,
+"name": "YSSA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/232.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 233,
+"name": "CIELO",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/233.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 234,
+"name": "KRISHNA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/234.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 235,
+"name": "IRISH",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/235.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 236,
+"name": "ARIES",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/236.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 237,
+"name": "PEARL",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/237.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 238,
+"name": "DARIELLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/238.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 240,
+"name": "SHAIRA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/240.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 241,
+"name": "MIKKO",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/241.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 242,
+"name": "SHIELLA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/242.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 243,
+"name": "PHOEBE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/243.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 244,
+"name": "JENAE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/244.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 245,
+"name": "AIKA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/245.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 246,
+"name": "ELLY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/246.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 247,
+"name": "AKI",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/247.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 248,
+"name": "RODELYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/248.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 249,
+"name": "RAILYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/249.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 250,
+"name": "LESLIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/250.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 251,
+"name": "MAE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/251.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 252,
+"name": "CLEA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/252.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 253,
+"name": "SHANCAI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/253.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 254,
+"name": "JENALYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/254.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 255,
+"name": "ANGEL",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/255.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 256,
+"name": "GEDI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/256.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 257,
+"name": "MARJORIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/257.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 258,
+"name": "IRENE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/258.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 259,
+"name": "ALICE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/259.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 260,
+"name": "SANDY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/260.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 261,
+"name": "MACE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/261.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 262,
+"name": "FRANCINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/262.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 264,
+"name": "ANGELA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/264.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 265,
+"name": "AJ",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/265.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 266,
+"name": "MICA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/266.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 267,
+"name": "CYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/267.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 268,
+"name": "GRACE",
+"status": "leave",
+"round": false,
+"photo": "archive/2026-08-27/268.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 269,
+"name": "CLARISSA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/269.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 270,
+"name": "STEFANIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/270.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 271,
+"name": "ARIANNE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/271.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 272,
+"name": "ESTHER",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/272.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 273,
+"name": "JAM",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/273.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 274,
+"name": "ROSE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/274.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 275,
+"name": "JELOU",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/275.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 278,
+"name": "KAI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/278.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 279,
+"name": "JASTIN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/279.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 280,
+"name": "MELANIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/280.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 281,
+"name": "CARLA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/281.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 282,
+"name": "JERLYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/282.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 283,
+"name": "CHARLENE",
+"status": "leave",
+"round": false,
+"photo": "archive/2026-08-27/283.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 284,
+"name": "TINA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-06-20/284.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 285,
+"name": "COLEEN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/285.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 286,
+"name": "ELIZA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/286.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 287,
+"name": "GENEROSE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/287.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 289,
+"name": "NIKKI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/289.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 290,
+"name": "GIAN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/290.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 291,
+"name": "JHO",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/291.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 292,
+"name": "JENINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/292.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 293,
+"name": "ELAINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/293.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 295,
+"name": "REN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/295.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 296,
+"name": "VIEN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/296.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 297,
+"name": "CJ",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/297.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 298,
+"name": "KISSES",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/298.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 299,
+"name": "RIZH",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/299.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 300,
+"name": "VENICE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/300.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 301,
+"name": "CHARIZMA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/301.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 302,
+"name": "WENDY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/302.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 303,
+"name": "CATHLYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-06-20/303.jpg"
+},
+{
+"list": "2026-06-20",
+"no": 305,
+"name": "ARIA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/305.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 200,
+"name": "SEY",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/200.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 201,
+"name": "PRINCESS",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/201.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 202,
+"name": "ALTHEA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/202.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 203,
+"name": "DARLYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/203.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 204,
+"name": "HAZELLE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/204.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 205,
+"name": "JUDY",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/205.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 206,
+"name": "DAISY",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/206.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 207,
+"name": "EUNICE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/207.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 208,
+"name": "ACYL",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/208.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 209,
+"name": "KRIS",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/209.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 210,
+"name": "CHRISTINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/210.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 211,
+"name": "ABBY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/211.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 212,
+"name": "MAUREEN",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/212.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 213,
+"name": "KC",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/213.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 214,
+"name": "GK",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/214.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 215,
+"name": "INAH",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/215.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 216,
+"name": "JAIMEE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/216.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 217,
+"name": "NICOLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/217.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 218,
+"name": "TRIXIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/218.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 219,
+"name": "JEEVEE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/219.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 220,
+"name": "BEVERLY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/220.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 221,
+"name": "ANGELINE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/221.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 222,
+"name": "ELLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/222.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 223,
+"name": "ADRIANNE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/223.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 224,
+"name": "MARIE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/224.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 225,
+"name": "CRIZELLE",
+"status": "leave",
+"round": false,
+"photo": "archive/2026-08-27/225.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 226,
+"name": "DIANE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/226.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 228,
+"name": "JOY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/228.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 229,
+"name": "JEZZ",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/229.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 230,
+"name": "SHARMAINE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/230.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 231,
+"name": "KYLA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/231.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 232,
+"name": "YSSA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/232.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 233,
+"name": "CIELO",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/233.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 234,
+"name": "KRISHNA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/234.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 235,
+"name": "IRISH",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/235.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 236,
+"name": "LEI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/236.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 237,
+"name": "PEARL",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/237.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 238,
+"name": "DARIELLE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/238.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 239,
+"name": "MARGA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/239.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 240,
+"name": "SHAIRA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/240.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 241,
+"name": "MIKKO",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/241.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 242,
+"name": "SHIELLA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/242.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 243,
+"name": "PHOEBE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/243.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 244,
+"name": "JENAE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/244.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 245,
+"name": "AIKA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/245.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 246,
+"name": "ELLY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/246.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 247,
+"name": "AKI",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/247.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 248,
+"name": "RODELYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/248.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 249,
+"name": "RAILYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/249.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 250,
+"name": "LESLIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/250.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 251,
+"name": "MAE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/251.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 252,
+"name": "CLEA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/252.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 253,
+"name": "SHANCAI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/253.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 254,
+"name": "JENALYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/254.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 255,
+"name": "ANGEL",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/255.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 257,
+"name": "MARJORIE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/257.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 258,
+"name": "IRENE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/258.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 259,
+"name": "ALICE",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/259.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 260,
+"name": "SANDY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/260.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 261,
+"name": "MACE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/261.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 262,
+"name": "FRANCINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/262.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 263,
+"name": "RIRI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/263.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 264,
+"name": "ANGELA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/264.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 265,
+"name": "AJ",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/265.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 266,
+"name": "MICA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/266.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 267,
+"name": "CYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/267.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 268,
+"name": "GRACE",
+"status": "leave",
+"round": false,
+"photo": "archive/2026-08-27/268.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 269,
+"name": "CLARISSA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/269.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 270,
+"name": "STEFANIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/270.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 271,
+"name": "ARIANNE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/271.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 272,
+"name": "ESTHER",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/272.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 274,
+"name": "ROSE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/274.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 275,
+"name": "JELOU",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/275.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 278,
+"name": "KAI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/278.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 279,
+"name": "JASTIN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/279.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 280,
+"name": "MELANIE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/280.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 282,
+"name": "JERLYN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/282.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 283,
+"name": "CHARLENE",
+"status": "leave",
+"round": false,
+"photo": "archive/2026-08-27/283.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 284,
+"name": "TINA",
+"status": "active",
+"round": true,
+"photo": "archive/2026-08-27/284.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 285,
+"name": "COLEEN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/285.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 286,
+"name": "ELIZA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/286.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 287,
+"name": "GENEROSE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/287.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 289,
+"name": "NIKKI",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/289.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 290,
+"name": "GIAN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/290.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 291,
+"name": "JHO",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/291.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 292,
+"name": "JENINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/292.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 293,
+"name": "ELAINE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/293.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 295,
+"name": "REN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/295.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 296,
+"name": "VIEN",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/296.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 297,
+"name": "CJ",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/297.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 298,
+"name": "KISSES",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/298.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 300,
+"name": "VENICE",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/300.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 301,
+"name": "CHARIZMA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/301.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 302,
+"name": "WENDY",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/302.jpg"
+},
+{
+"list": "2026-08-27",
+"no": 305,
+"name": "ARIA",
+"status": "active",
+"round": false,
+"photo": "archive/2026-08-27/305.jpg"
+}
+]
+}
