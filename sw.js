@@ -1,6 +1,6 @@
 // SIGC Golf Attendants — Service Worker
 // バージョンを上げると古いキャッシュが自動削除されます
-const CACHE_NAME = 'sigc-v1.8.1'
+const CACHE_NAME = 'sigc-v1.8.2'
 
 const PRECACHE = [
   './',
